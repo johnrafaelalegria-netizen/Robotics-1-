@@ -1,4 +1,4 @@
-/* PB pull up
+/* PB input pull up
 PB pull up uses internal resistor 
 instead of having an external one
 Controlling digital input
