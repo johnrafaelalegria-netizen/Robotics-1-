@@ -9,7 +9,7 @@
  represents the reading from analogRead(A0)
  size represents how many values we are taking (5)*/
 float getAverage(int arr[], int size) {
-int sum = 0; //keeps track of values strating from 0
+int sum = 0; //keeps track of values starting from 0
 
 /*starts a loop checking values in position 0 all the way to five*/
   for(int i = 0;i < size; i++){
