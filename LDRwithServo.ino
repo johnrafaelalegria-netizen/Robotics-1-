@@ -3,7 +3,7 @@
 
 Servo myservo; //create servo object to control a servo
 
-int potpin = 0; //analog pin used to connect to joystick
+int potpin = A0; //analog pin used to connect to joystick
 int val; //variable to read the value from analog pin
 
 void setup() {  
