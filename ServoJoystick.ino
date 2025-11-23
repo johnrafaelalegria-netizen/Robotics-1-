@@ -13,6 +13,6 @@ void setup() {
 void loop() {
  val = analogRead(potpin); //declaring that val represents the reading of A0
  val = map(val, 0, 1023, 0, 180); //convertign bit value to angle
- myservo.write(val); //makes servo move to an precise angle
+ myservo.write(val); //makes servo move to a precise angle
  delay(15);//15ms delay
 }
