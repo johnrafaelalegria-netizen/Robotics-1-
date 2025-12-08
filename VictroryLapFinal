@@ -1,0 +1,30 @@
+void victoryLap(){
+forward(100);
+delay(9000);//move foirward for 9 sec
+stop();
+delay(1000);//stop for 1s
+right(100);
+delay(470);//move right for 470ms
+stop();
+delay(1000);//stop for 1s
+forward(100);
+delay(5000);//move forward for 5s
+stop();
+delay(1000);//stop for 1s
+right(100);
+delay(440);//move right for 440ms
+stop();
+delay(1000);//stop for 1s
+forward(100);
+delay(9000);//move forward for 9s
+stop();
+delay(1000);//stop for 1s
+right(100);
+delay(470);//move right for 470s
+stop();
+delay(1000);//stop for 1s
+forward(100);
+delay(5000);//move forward for 5s
+stop();//complete stop after victory lap
+currentMode = MANUAL_MODE;// goes to manual after 1 lap
+}
