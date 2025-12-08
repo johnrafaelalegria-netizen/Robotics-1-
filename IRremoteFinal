@@ -1,0 +1,25 @@
+void manual(){
+//------------------ INCREASE SPEED----------------------------------
+if (incomingCode == HEX_FORWARD){ 
+    // State Change: Update the speed variable
+    speed += 10;
+    if (speed > 255) speed = 255;//caps speed at 255
+    
+    // Execution: Run the dedicated motor function
+    forward(speed); // <-- Use the simple forward function
+}
+//----------------------DECREASE SPEED------------------
+else if (incomingCode == HEX_DECREASE_SPEED) {
+    // State Change: Update the speed variable
+    speed -= 10;
+    if (speed < 0) speed = 0;
+    
+    // Execution: Run the dedicated motor function
+    forward(speed); // Car must be moving forward to apply new speed
+}
+// ----------------- OTHER MOVEMENT CONTROLS ----------------
+else if (incomingCode == HEX_BACKWARD) backward(speed);
+else if (incomingCode == HEX_LEFT) left(50);
+else if (incomingCode == HEX_RIGHT) right(50);
+else if (incomingCode == HEX_STOP) stop();
+}
