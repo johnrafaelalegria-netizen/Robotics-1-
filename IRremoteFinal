@@ -18,8 +18,8 @@ else if (incomingCode == HEX_DECREASE_SPEED) {
     forward(speed); // Car must be moving forward to apply new speed
 }
 // ----------------- OTHER MOVEMENT CONTROLS ----------------
-else if (incomingCode == HEX_BACKWARD) backward(speed);
-else if (incomingCode == HEX_LEFT) left(50);
-else if (incomingCode == HEX_RIGHT) right(50);
-else if (incomingCode == HEX_STOP) stop();
+else if (incomingCode == HEX_BACKWARD) backward(speed);//when hex code is backward it calls backward() function
+else if (incomingCode == HEX_LEFT) left(50);//when hex code is left it calls left() function
+else if (incomingCode == HEX_RIGHT) right(50);//when hex code is right it calls right() function
+else if (incomingCode == HEX_STOP) stop();//when hex code is stop it calls stop() function
 }
