@@ -1,0 +1,17 @@
+//---------------------LINE TRACK MOVEMENT---------------------
+if(midValue > 500 && midValue < 800 && leftValue <=50 && rightValue <=50){
+  forward(75);//if midValue is greater than left & right value than go forward
+}
+if (midValue > 850 && leftValue > 850 && rightValue > 850){
+  stop();//if value is above 850 stop()
+ }
+if (leftValue > 100 && leftValue < 700){
+  left(50);//if leftValue within a range of 100-700 than move left
+}
+if (rightValue > 100 && rightValue < 700){
+  right(50);//if rightValue within a range of 100-700 than move right
+}
+if (midValue < 100 && leftValue < 100 && rightValue < 100){
+  right(50);//if no line detected rotate rigth continuously till you find a line
+ }
+}
