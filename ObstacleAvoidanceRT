@@ -1,0 +1,118 @@
+//==============================OBSTACLE==============================
+//===============OBSTACLE AVOIDANCE (NON-BLOCKING)====================
+void obstacle(){
+// If we are in the middle of a timed action, we exit immediately
+/*millis = current time
+nextActionTime = targeted time */
+if (millis() < nextActionTime) {
+return; //stop running function for now
+}
+
+switch (Step) {
+// STATE 0: CHECK FORWARD
+case 0:
+ultraSonic(); 
+if(distance > 25){
+forward(75); // Clear path, keep moving
+// Stay in state 0 until blocked
+} else {
+// Blocked, transition to stop state
+stop();
+Step = 1;
+}
+break;
+            
+// STATE 1: STOP PAUSE
+case 1:
+// Pause before checking sides
+/*nextActiontime works by saving the calculation done by adding millis+500*/
+nextActionTime = millis() + 500; //does action for 500ms 
+Step = 2;
+break;
+
+// STATE 2: CHECK LEFT
+case 2:
+servoLeft();
+nextActionTime = millis() + 500;//does action for 500ms
+Step = 3;
+break;
+
+// STATE 3: READ LEFT DISTANCE
+case 3:
+ultraSonic();
+if(distance > 25){
+Step = 4; // Left is clear, turn left
+} else {
+Step = 5; // Left is blocked, check right
+}
+break;
+
+// STATE 4: TURN LEFT MOVE (1000ms)
+case 4:
+servoForward();
+nextActionTime = millis() + 500;//does action for 500ms
+left(75);
+nextActionTime = millis() + 650;//does action for 650ms
+Step = 6; // Move to finish turn
+break;
+
+// STATE 5: CHECK RIGHT START
+case 5:
+servoRight();
+nextActionTime = millis() + 500;//does action for 500ms
+Step = 7;
+break;
+
+// STATE 6: FINISH TURN (LEFT OR RIGHT) - Move servo forward and continue
+case 6:
+servoForward();
+nextActionTime = millis() + 500;//does action for 500ms
+Step = 0; // Return to check forward
+forward(100); 
+break;
+            
+// STATE 7: READ RIGHT DISTANCE
+case 7:
+ultraSonic();
+if(distance > 25){
+Step = 8; // Right is clear, turn right
+} else {
+Step = 9; // Right is blocked, full reverse
+}
+break;
+
+// STATE 8: TURN RIGHT MOVE (1000ms)
+case 8:
+ right(75);
+nextActionTime = millis() + 650;//does action for 650ms
+Step = 6; // Re-use finish turn state
+break;
+
+// STATE 9: REVERSE START
+case 9:
+servoForward();
+nextActionTime = millis() + 500;//does action for 500ms
+Step = 10;
+break;
+            
+// STATE 10: BACKWARD MOVE (1000ms)
+case 10:
+backward(75);
+nextActionTime = millis() + 1000;//goes backwards for 1000ms
+Step = 11;
+break;
+
+// STATE 11: TURN 180 (2200ms)
+case 11:
+right(50);
+nextActionTime = millis() + 2200;//does action for 2200ms
+Step = 12;
+break;
+            
+// STATE 12: FINAL STOP AND RESET
+case 12:
+stop();
+Step = 0; // Reset to Check Forward
+break;
+    }
+}
